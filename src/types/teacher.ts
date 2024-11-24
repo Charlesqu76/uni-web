@@ -1,5 +1,15 @@
 export type Teacher = {
-  teacherId: number;
-  firstName: string;
-  lastName: string;
+  teacherid: number;
+  firstname: string;
+  lastname: string;
 };
+
+export type Teachers = {
+  list: {
+    courseId: number;
+    name: string;
+    code: string;
+    year: number;
+    semester: number;
+  }[];
+} & Teacher;
