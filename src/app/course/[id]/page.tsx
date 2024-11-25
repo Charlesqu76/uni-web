@@ -1,3 +1,4 @@
+import { SemesterCompnent } from "@/components/Semester";
 import { getCourseDetail } from "@/fetch/course";
 import { Book, Users, Calendar, StepForward } from "lucide-react";
 import Link from "next/link";
@@ -8,15 +9,23 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!code) {
     return <div>Not Found</div>;
   }
-
   return (
     <div>
       <div className="mb-4">
         <div className="flex items-center space-x-2 mb-2">
           <Book />
-          <h3 className="text-2xl font-bold"> {code}</h3>
+          <h3 className="text-xl font-bold"> {code}</h3>
         </div>
         <span className="text-lg">{name}</span>
+        <div>
+          <Link
+            href={"https://www.sydney.edu.au/units/" + code}
+            target="_blank"
+            className=" underline text-blue-500"
+          >
+            website
+          </Link>
+        </div>
       </div>
       <div className="flex flex-col space-y-4">
         {list?.map(
@@ -38,12 +47,7 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
                     {firstname} {lastname}
                   </span>
                 </Link>
-                <div className="flex items-center space-x-2">
-                  <Calendar />
-                  <span>
-                    {year} {semester}
-                  </span>
-                </div>
+                <SemesterCompnent semester={semester} year={year} />
               </div>
               <Link href={"/detail/" + rollid}>
                 <StepForward />

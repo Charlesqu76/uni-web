@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from "next";
+import { toast } from "sonner";
 
 type HttpMethod = "GET" | "POST";
 
@@ -67,15 +68,18 @@ const fetchUtility = async <T>(
     const response = await fetch(url, fetchOptions);
     if (!response.ok) {
       const errMsg = `${url} --->  ${response.status} ${response.statusText}`;
-      if (typeof window) {
-      }
-      console.error(errMsg);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
+    if (!data.success && typeof window) {
+      toast?.error(data.msg);
+    }
     return data.data;
   } catch (error) {
+    if (typeof window) {
+      toast?.error?.(`HTTP error! status: error`);
+    }
     return {} as any;
   }
 };

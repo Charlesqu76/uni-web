@@ -1,5 +1,6 @@
+import { SemesterCompnent } from "@/components/Semester";
 import { getTeacher } from "@/fetch/teacher";
-import { Book, Calendar } from "lucide-react";
+import { Book } from "lucide-react";
 import Link from "next/link";
 
 const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -19,17 +20,12 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
             <Link href={`/course/${code}`} className=" block mb-2">
               <div className="flex items-center space-x-2 mb-1">
                 <Book />
-                <span className="text-2xl">{code}</span>
+                <span className="text-xl">{code}</span>
               </div>
 
-              <div className="text-xl">{name}</div>
+              <div className="text-lg">{name}</div>
             </Link>
-            <div className="flex space-x-2">
-              <Calendar />
-              <span className="text-lg">
-                {year} {semester}
-              </span>
-            </div>
+            <SemesterCompnent semester={semester} year={year} />
           </div>
         ))}
       </div>

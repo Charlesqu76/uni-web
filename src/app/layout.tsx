@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
+
 import "@/styles/globals.css";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="p-2">{children}</body>
+      <body>
+        <Header />
+        <main className="p-2">
+          {children} <Toaster />
+        </main>
+      </body>
     </html>
   );
 }

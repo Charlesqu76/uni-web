@@ -1,5 +1,5 @@
 export type Semester = {
-  semesterid: number;
+  semesterid?: number;
   year: number;
   semester: number;
 };
